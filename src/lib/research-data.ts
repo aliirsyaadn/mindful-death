@@ -161,19 +161,19 @@ export const LIFE_FACTS = [
 
 // Milestone kehidupan khas Indonesia
 export const LIFE_MILESTONES_ID = [
-  { age: 0, label: "Lahir", icon: "baby" },
-  { age: 6, label: "Masuk SD", icon: "school" },
-  { age: 12, label: "Masuk SMP", icon: "school" },
-  { age: 15, label: "Masuk SMA", icon: "school" },
-  { age: 18, label: "Lulus SMA / Masuk Kuliah", icon: "graduation" },
-  { age: 22, label: "Lulus Kuliah", icon: "graduation" },
-  { age: 25, label: "Rata-rata usia menikah", icon: "heart" },
-  { age: 27, label: "Rata-rata memiliki anak pertama", icon: "baby" },
-  { age: 40, label: "Paruh baya", icon: "milestone" },
-  { age: 55, label: "Pensiun dini", icon: "retirement" },
-  { age: 58, label: "Usia pensiun normal", icon: "retirement" },
-  { age: 60, label: "Lansia", icon: "elderly" },
-  { age: 72, label: "Harapan hidup rata-rata Indonesia", icon: "flag" },
+  { age: 0, labelKey: "born", icon: "baby" },
+  { age: 6, labelKey: "enterElementary", icon: "school" },
+  { age: 12, labelKey: "enterMiddleSchool", icon: "school" },
+  { age: 15, labelKey: "enterHighSchool", icon: "school" },
+  { age: 18, labelKey: "graduateHighSchool", icon: "graduation" },
+  { age: 22, labelKey: "graduateCollege", icon: "graduation" },
+  { age: 25, labelKey: "averageMarriageAge", icon: "heart" },
+  { age: 27, labelKey: "averageFirstChild", icon: "baby" },
+  { age: 40, labelKey: "middleAge", icon: "milestone" },
+  { age: 55, labelKey: "earlyRetirement", icon: "retirement" },
+  { age: 58, labelKey: "normalRetirement", icon: "retirement" },
+  { age: 60, labelKey: "senior", icon: "elderly" },
+  { age: 72, labelKey: "avgLifeExpectancy", icon: "flag" },
 ];
 
 // Kategori goal
