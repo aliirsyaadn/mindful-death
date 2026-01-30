@@ -162,7 +162,7 @@ export default function DashboardPage() {
         {/* Main Countdown */}
         <MotionScaleIn delay={0.1}>
           <section className="mb-12">
-            <div className="glass-card rounded-3xl p-8 md:p-12 bg-white shadow-xl border border-zinc-200">
+            <div className="glass-card rounded-3xl p-4 sm:p-8 md:p-12 bg-white shadow-xl border border-zinc-200">
               <p className="text-center text-zinc-500 mb-2 text-sm uppercase tracking-wider font-medium">
                 {userData.planType === "death"
                   ? t("remainingTime")
@@ -198,7 +198,7 @@ export default function DashboardPage() {
           variants={staggerContainer}
           initial="initial"
           animate="animate"
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+          className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-12"
         >
           {[
             { label: t("currentAge"), value: userData.assessment!.age, unit: t("yearsOld") },
@@ -209,13 +209,13 @@ export default function DashboardPage() {
             <motion.div
               key={index}
               variants={staggerItem}
-              className="glass-card rounded-2xl p-5 bg-white border border-zinc-200"
+              className="glass-card rounded-2xl p-3 sm:p-5 bg-white border border-zinc-200"
             >
-              <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">{stat.label}</p>
-              <p className={`text-3xl font-bold ${stat.highlight ? "text-green-600" : "text-zinc-900"}`}>
+              <p className="text-[10px] sm:text-xs text-zinc-500 uppercase tracking-wider mb-1">{stat.label}</p>
+              <p className={`text-2xl sm:text-3xl font-bold ${stat.highlight ? "text-green-600" : "text-zinc-900"}`}>
                 {stat.value}
               </p>
-              <p className="text-sm text-zinc-500">{stat.unit}</p>
+              <p className="text-xs sm:text-sm text-zinc-500">{stat.unit}</p>
             </motion.div>
           ))}
         </motion.section>

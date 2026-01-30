@@ -128,24 +128,24 @@ export function LiveCountdown({
   }
 
   const sizeClasses = {
-    sm: "text-2xl",
-    md: "text-4xl",
-    lg: "text-6xl md:text-7xl",
-    xl: "text-7xl md:text-9xl",
+    sm: "text-lg sm:text-2xl",
+    md: "text-2xl sm:text-4xl",
+    lg: "text-3xl sm:text-6xl md:text-7xl",
+    xl: "text-2xl min-[400px]:text-4xl sm:text-7xl md:text-9xl",
   };
 
   const labelSizeClasses = {
-    sm: "text-xs",
-    md: "text-sm",
-    lg: "text-base",
-    xl: "text-lg",
+    sm: "text-[8px] sm:text-xs",
+    md: "text-[10px] sm:text-sm",
+    lg: "text-xs sm:text-base",
+    xl: "text-[10px] min-[400px]:text-xs sm:text-lg",
   };
 
   const separatorSizeClasses = {
-    sm: "text-xl",
-    md: "text-3xl",
-    lg: "text-5xl md:text-6xl",
-    xl: "text-6xl md:text-8xl",
+    sm: "text-base sm:text-xl",
+    md: "text-xl sm:text-3xl",
+    lg: "text-2xl sm:text-5xl md:text-6xl",
+    xl: "text-xl min-[400px]:text-3xl sm:text-6xl md:text-8xl",
   };
 
   return (
@@ -161,7 +161,7 @@ export function LiveCountdown({
         </p>
       )}
 
-      <div className="flex items-center justify-center gap-2 md:gap-4">
+      <div className="flex items-center justify-center gap-0.5 min-[400px]:gap-1 sm:gap-2 md:gap-4 flex-wrap">
         {/* Days */}
         <div className="flex flex-col items-center">
           <AnimatedNumber
@@ -262,7 +262,7 @@ export function DaysCountdown({
           key={daysRemaining}
           initial={{ scale: 1.05 }}
           animate={{ scale: 1 }}
-          className="text-5xl md:text-6xl font-extrabold countdown-number text-zinc-900"
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold countdown-number text-zinc-900"
         >
           {formatNumber(daysRemaining)}
         </motion.span>

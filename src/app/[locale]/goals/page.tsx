@@ -155,7 +155,7 @@ export default function GoalsPage() {
               variants={staggerContainer}
               initial="initial"
               animate="animate"
-              className="grid grid-cols-3 gap-4"
+              className="grid grid-cols-1 min-[400px]:grid-cols-3 gap-3 sm:gap-4"
             >
               {[
                 { value: goalStats.total, label: t("totalGoals") },
@@ -165,16 +165,16 @@ export default function GoalsPage() {
                 <motion.div
                   key={index}
                   variants={staggerItem}
-                  className="glass-card rounded-2xl p-5 bg-white border border-zinc-200 text-center"
+                  className="glass-card rounded-2xl p-3 sm:p-5 bg-white border border-zinc-200 text-center"
                 >
-                  <p className={`text-3xl font-bold ${
+                  <p className={`text-2xl sm:text-3xl font-bold ${
                     stat.highlight === "green" ? "text-green-600" :
                     stat.highlight === "amber" ? "text-amber-600" :
                     "text-zinc-900"
                   }`}>
                     {stat.value}
                   </p>
-                  <p className="text-sm text-zinc-500">{stat.label}</p>
+                  <p className="text-xs sm:text-sm text-zinc-500">{stat.label}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -189,7 +189,7 @@ export default function GoalsPage() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setFilter("all")}
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                className={`px-4 py-2.5 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center ${
                   filter === "all"
                     ? "bg-zinc-900 text-white"
                     : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
@@ -203,7 +203,7 @@ export default function GoalsPage() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setFilter(cat.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                  className={`px-4 py-2.5 min-h-[44px] rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center ${
                     filter === cat.id
                       ? "bg-zinc-900 text-white"
                       : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
@@ -308,7 +308,7 @@ export default function GoalsPage() {
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                                 onClick={() => handleEditGoal(goal)}
-                                className="p-2 rounded-lg hover:bg-zinc-100 transition-colors"
+                                className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-zinc-100 transition-colors"
                               >
                                 <Edit2 className="w-4 h-4 text-zinc-400" />
                               </motion.button>
@@ -316,7 +316,7 @@ export default function GoalsPage() {
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                                 onClick={() => handleDeleteGoal(goal.id)}
-                                className="p-2 rounded-lg hover:bg-red-50 transition-colors"
+                                className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-red-50 transition-colors"
                               >
                                 <Trash2 className="w-4 h-4 text-red-400" />
                               </motion.button>

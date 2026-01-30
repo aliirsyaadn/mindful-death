@@ -16,7 +16,7 @@ export function BottomNavbar() {
         <div className="flex items-center justify-around py-3">
           <Link
             href="/dashboard"
-            className={`flex flex-col items-center gap-1 transition-colors ${
+            className={`flex flex-col items-center justify-center gap-1 min-h-[48px] min-w-[64px] px-3 py-2 rounded-lg transition-colors ${
               isActive("/dashboard") ? "text-zinc-900" : "text-zinc-400 hover:text-zinc-900"
             }`}
           >
@@ -25,7 +25,7 @@ export function BottomNavbar() {
           </Link>
           <Link
             href="/goals"
-            className={`flex flex-col items-center gap-1 transition-colors ${
+            className={`flex flex-col items-center justify-center gap-1 min-h-[48px] min-w-[64px] px-3 py-2 rounded-lg transition-colors ${
               isActive("/goals") ? "text-zinc-900" : "text-zinc-400 hover:text-zinc-900"
             }`}
           >
@@ -34,7 +34,7 @@ export function BottomNavbar() {
           </Link>
           <Link
             href="/research"
-            className={`flex flex-col items-center gap-1 transition-colors ${
+            className={`flex flex-col items-center justify-center gap-1 min-h-[48px] min-w-[64px] px-3 py-2 rounded-lg transition-colors ${
               isActive("/research") ? "text-zinc-900" : "text-zinc-400 hover:text-zinc-900"
             }`}
           >
