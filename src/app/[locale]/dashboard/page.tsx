@@ -8,9 +8,10 @@ import {
   Plus,
   Settings,
   Target,
-  Calendar,
   ChevronRight,
   Info,
+  ClipboardList,
+  ArrowRight,
 } from "lucide-react";
 import { LiveCountdown } from "@/components/countdown/LiveCountdown";
 import { calculateAverageLifeExpectancy, formatNumber } from "@/lib/calculator";
@@ -52,10 +53,13 @@ export default function DashboardPage() {
 
   const estimate = useMemo(() => {
     if (!userData?.assessment) return null;
+    // Use extended assessment result if available, otherwise use average
+    if (userData.lifeEstimate) {
+      return userData.lifeEstimate;
+    }
     return calculateAverageLifeExpectancy(
       userData.assessment.age,
-      userData.assessment.gender,
-      userData.planType
+      userData.assessment.gender
     );
   }, [userData]);
 
@@ -65,17 +69,13 @@ export default function DashboardPage() {
     // If birth date is set, use it for precise calculation
     if (userData.birthDate) {
       const birth = new Date(userData.birthDate);
-      const targetYears = userData.planType === "retirement" ? 58 : estimate.lifeExpectancy;
-      birth.setFullYear(birth.getFullYear() + targetYears);
+      birth.setFullYear(birth.getFullYear() + estimate.lifeExpectancy);
       return birth;
     }
 
     // Otherwise estimate based on age
     const now = new Date();
-    const daysToAdd = userData.planType === "retirement"
-      ? estimate.daysToRetirement
-      : estimate.daysRemaining;
-    now.setDate(now.getDate() + daysToAdd);
+    now.setDate(now.getDate() + estimate.daysRemaining);
     return now;
   }, [userData, estimate]);
 
@@ -95,9 +95,8 @@ export default function DashboardPage() {
 
   const upcomingMilestones = useMemo(() => {
     if (!userData?.assessment || !estimate) return [];
-    const maxAge = userData.planType === "retirement" ? 58 : estimate.lifeExpectancy;
     return LIFE_MILESTONES_ID.filter(
-      (m) => m.age > userData.assessment!.age && m.age <= maxAge
+      (m) => m.age > userData.assessment!.age && m.age <= estimate.lifeExpectancy
     );
   }, [userData, estimate]);
 
@@ -106,9 +105,7 @@ export default function DashboardPage() {
   }
 
   const lifePercentage = Math.round(
-    (userData.assessment!.age /
-      (userData.planType === "retirement" ? 58 : estimate.lifeExpectancy)) *
-      100
+    (userData.assessment!.age / estimate.lifeExpectancy) * 100
   );
 
   const completedGoals = userData.goals.filter((g) => g.completed).length;
@@ -142,31 +139,12 @@ export default function DashboardPage() {
       </header>
 
       <main className="container mx-auto px-4 py-8 pb-24">
-        {/* Plan Type Badge */}
-        <MotionFadeUp className="text-center mb-6">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900 text-white text-sm font-medium">
-            {userData.planType === "death" ? (
-              <>
-                <Target className="w-4 h-4" />
-                {t("deathPlan")}
-              </>
-            ) : (
-              <>
-                <Calendar className="w-4 h-4" />
-                {t("retirementPlan")}
-              </>
-            )}
-          </span>
-        </MotionFadeUp>
-
         {/* Main Countdown */}
         <MotionScaleIn delay={0.1}>
           <section className="mb-12">
             <div className="glass-card rounded-3xl p-4 sm:p-8 md:p-12 bg-white shadow-xl border border-zinc-200">
               <p className="text-center text-zinc-500 mb-2 text-sm uppercase tracking-wider font-medium">
-                {userData.planType === "death"
-                  ? t("remainingTime")
-                  : t("timeToRetirement")}
+                {t("remainingTime")}
               </p>
               <LiveCountdown
                 targetDate={targetDate}
@@ -180,7 +158,7 @@ export default function DashboardPage() {
                   <span>{t("born")}</span>
                   <span>{lifePercentage}% {t("used")}</span>
                   <span>
-                    {userData.planType === "retirement" ? t("retirement58") : `${estimate.lifeExpectancy} ${t("yearsOld")}`}
+                    {estimate.lifeExpectancy} {t("yearsOld")}
                   </span>
                 </div>
                 <Progress
@@ -219,6 +197,28 @@ export default function DashboardPage() {
             </motion.div>
           ))}
         </motion.section>
+
+        {/* Assessment CTA */}
+        <MotionFadeUp delay={0.25}>
+          <Link href="/assessment">
+            <div className="mb-8 sm:mb-12 p-4 sm:p-6 bg-gradient-to-r from-zinc-900 to-zinc-800 rounded-2xl text-white hover:from-zinc-800 hover:to-zinc-700 transition-all cursor-pointer">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    <ClipboardList className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg">Health Assessment</h3>
+                    <p className="text-zinc-400 text-sm">
+                      Hitung estimasi lebih akurat berdasarkan gaya hidup
+                    </p>
+                  </div>
+                </div>
+                <ArrowRight className="w-5 h-5 text-zinc-400" />
+              </div>
+            </div>
+          </Link>
+        </MotionFadeUp>
 
         {/* Goals Section */}
         <MotionFadeUp delay={0.3}>

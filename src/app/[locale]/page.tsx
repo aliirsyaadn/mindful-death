@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Clock, Target, BarChart3, Heart } from "lucide-react";
+import { ArrowRight, Target, BarChart3, Heart, Clock } from "lucide-react";
 import { INDONESIA_LIFE_EXPECTANCY, LIFE_FACTS, TOP_CAUSES_OF_DEATH_INDONESIA } from "@/lib/research-data";
 import { calculateAverageLifeExpectancy, formatNumber, DAYS_PER_YEAR } from "@/lib/calculator";
 import { saveQuickSetup, hasSetup } from "@/lib/storage";
@@ -13,7 +13,6 @@ import { Progress } from "@/components/ui/progress";
 import { TopNavbar } from "@/components/navigation";
 import { MotionList, MotionItem, MotionFadeUp, MotionSection } from "@/components/motion";
 import { staggerContainer, staggerItem } from "@/lib/animations";
-import type { PlanType } from "@/types";
 
 // Calculate age from birth date
 function calculateAge(birthDate: string): number {
@@ -33,7 +32,6 @@ export default function HomePage() {
   const tc = useTranslations("common");
 
   const [gender, setGender] = useState<"male" | "female">("male");
-  const [planType, setPlanType] = useState<PlanType>("death");
   const [birthDate, setBirthDate] = useState("");
   const [currentFact, setCurrentFact] = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -57,13 +55,19 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, [router]);
 
-  const estimate = calculateAverageLifeExpectancy(age, gender, planType);
+  const estimate = calculateAverageLifeExpectancy(age, gender);
   const avgDays = Math.round(INDONESIA_LIFE_EXPECTANCY.overall * DAYS_PER_YEAR);
 
-  const handleStart = () => {
+  const handleUseAverage = () => {
     if (!birthDate) return;
-    saveQuickSetup(age, gender, planType, birthDate);
+    saveQuickSetup(age, gender, birthDate);
     router.push("/dashboard");
+  };
+
+  const handleTakeAssessment = () => {
+    if (!birthDate) return;
+    saveQuickSetup(age, gender, birthDate);
+    router.push("/assessment");
   };
 
   if (!mounted) {
@@ -138,12 +142,11 @@ export default function HomePage() {
               variants={staggerContainer}
               initial="initial"
               animate="animate"
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+              className="grid grid-cols-3 gap-4 mb-12"
             >
               {[
                 { value: INDONESIA_LIFE_EXPECTANCY.male, label: t("statYearsMale") },
                 { value: INDONESIA_LIFE_EXPECTANCY.female, label: t("statYearsFemale") },
-                { value: 58, label: t("statRetirementAge") },
                 { value: formatNumber(avgDays), label: t("statAvgDays"), highlight: true },
               ].map((stat, index) => (
                 <motion.div
@@ -184,43 +187,6 @@ export default function HomePage() {
             </MotionFadeUp>
 
             <MotionFadeUp delay={0.2} className="glass-card rounded-2xl p-8 shadow-xl border border-zinc-200">
-              {/* Plan Type Selection */}
-              <div className="mb-8">
-                <label className="block text-sm font-semibold text-zinc-700 mb-3">
-                  {t("selectPlan")}
-                </label>
-                <div className="grid grid-cols-2 gap-4">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setPlanType("death")}
-                    className={`p-4 rounded-xl border-2 transition-all ${
-                      planType === "death"
-                        ? "border-zinc-900 bg-zinc-900 text-white"
-                        : "border-zinc-200 hover:border-zinc-300"
-                    }`}
-                  >
-                    <Clock className="w-6 h-6 mx-auto mb-2" />
-                    <p className="font-semibold">{t("deathPlan")}</p>
-                    <p className="text-xs opacity-70">{t("deathPlanDesc")}</p>
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setPlanType("retirement")}
-                    className={`p-4 rounded-xl border-2 transition-all ${
-                      planType === "retirement"
-                        ? "border-zinc-900 bg-zinc-900 text-white"
-                        : "border-zinc-200 hover:border-zinc-300"
-                    }`}
-                  >
-                    <Target className="w-6 h-6 mx-auto mb-2" />
-                    <p className="font-semibold">{t("retirementPlan")}</p>
-                    <p className="text-xs opacity-70">{t("retirementPlanDesc")}</p>
-                  </motion.button>
-                </div>
-              </div>
-
               {/* Gender Selection */}
               <div className="mb-6">
                 <label className="block text-sm font-semibold text-zinc-700 mb-2">
@@ -278,27 +244,44 @@ export default function HomePage() {
                 className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-xl p-6 mb-6 text-white"
               >
                 <p className="text-sm text-zinc-400 mb-2">
-                  {planType === "death" ? t("remainingDays") : t("daysToRetirement")}
+                  {t("remainingDays")}
                 </p>
                 <p className="text-4xl md:text-5xl font-extrabold countdown-number">
-                  {formatNumber(planType === "death" ? estimate.daysRemaining : estimate.daysToRetirement)}
+                  {formatNumber(estimate.daysRemaining)}
                   <span className="text-xl text-zinc-400 ml-2">{tc("days")}</span>
                 </p>
                 <p className="text-sm text-zinc-500 mt-2">
-                  {t("approxYears", { years: Math.round(planType === "death" ? estimate.yearsRemaining : estimate.yearsToRetirement) })}
+                  {t("approxYears", { years: Math.round(estimate.yearsRemaining) })}
                 </p>
               </motion.div>
 
-              {/* CTA Button */}
-              <Button
-                onClick={handleStart}
-                disabled={!birthDate}
-                size="lg"
-                className="w-full"
-              >
-                {birthDate ? t("viewDashboard") : t("enterBirthDate")}
-                <ArrowRight className="w-5 h-5" />
-              </Button>
+              {/* CTA Buttons - Assessment Choice */}
+              <div className="space-y-3">
+                <Button
+                  onClick={handleUseAverage}
+                  disabled={!birthDate}
+                  size="lg"
+                  className="w-full"
+                >
+                  {birthDate ? t("useAverage") : t("enterBirthDate")}
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+                <Button
+                  onClick={handleTakeAssessment}
+                  disabled={!birthDate}
+                  variant="outline"
+                  size="lg"
+                  className="w-full"
+                >
+                  {t("takeAssessment")}
+                  <Target className="w-5 h-5" />
+                </Button>
+              </div>
+              {birthDate && (
+                <p className="text-xs text-zinc-500 text-center mt-3">
+                  {t("assessmentHint")}
+                </p>
+              )}
             </MotionFadeUp>
           </div>
         </div>

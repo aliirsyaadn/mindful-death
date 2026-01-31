@@ -16,7 +16,8 @@ export type AlcoholConsumption = "never" | "moderate" | "heavy";
 
 export type SocialConnection = "isolated" | "limited" | "moderate" | "strong";
 
-export type PlanType = "death" | "retirement";
+// PlanType kept for backward compatibility with existing data
+export type PlanType = "death";
 
 export type LifeStage =
   | "muda"        // 18-30
@@ -45,9 +46,10 @@ export interface LifeEstimate {
   daysRemaining: number;
   daysLived: number;
   totalDays: number;
-  yearsToRetirement: number;
-  daysToRetirement: number;
   adjustmentApplied: number;
+  // Deprecated - kept for backward compatibility
+  yearsToRetirement?: number;
+  daysToRetirement?: number;
 }
 
 export interface Goal {
@@ -80,4 +82,9 @@ export interface UserData {
   birthDate?: string;
   completedAt?: string;
   createdAt: string;
+  // Extended assessment data from dynamic assessment
+  extendedAssessment?: import("./assessment").ExtendedAssessmentData;
 }
+
+// Re-export all assessment types
+export * from "./assessment";

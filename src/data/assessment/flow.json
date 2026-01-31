@@ -1,0 +1,369 @@
+{
+  "id": "indonesia-health-v1",
+  "version": "1.0.0",
+  "sections": [
+    {
+      "id": "basic",
+      "titleKey": "assessment.sections.basic.title",
+      "descriptionKey": "assessment.sections.basic.description",
+      "icon": "User",
+      "order": 1
+    },
+    {
+      "id": "lifestyle",
+      "titleKey": "assessment.sections.lifestyle.title",
+      "descriptionKey": "assessment.sections.lifestyle.description",
+      "icon": "Activity",
+      "order": 2
+    },
+    {
+      "id": "health",
+      "titleKey": "assessment.sections.health.title",
+      "descriptionKey": "assessment.sections.health.description",
+      "icon": "Heart",
+      "order": 3
+    },
+    {
+      "id": "chronic-conditions",
+      "titleKey": "assessment.sections.chronicConditions.title",
+      "descriptionKey": "assessment.sections.chronicConditions.description",
+      "icon": "Stethoscope",
+      "order": 4,
+      "showIf": [
+        { "questionId": "has_chronic_condition", "operator": "equals", "value": true }
+      ]
+    },
+    {
+      "id": "social",
+      "titleKey": "assessment.sections.social.title",
+      "descriptionKey": "assessment.sections.social.description",
+      "icon": "Users",
+      "order": 5
+    }
+  ],
+  "questions": [
+    {
+      "id": "gender",
+      "sectionId": "basic",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.gender.label",
+      "descriptionKey": "assessment.questions.gender.description",
+      "required": true,
+      "order": 1,
+      "config": {
+        "options": [
+          { "id": "male", "labelKey": "common.male", "value": "male" },
+          { "id": "female", "labelKey": "common.female", "value": "female" }
+        ]
+      }
+    },
+    {
+      "id": "birth_date",
+      "sectionId": "basic",
+      "inputType": "date",
+      "labelKey": "assessment.questions.birthDate.label",
+      "descriptionKey": "assessment.questions.birthDate.description",
+      "required": true,
+      "order": 2,
+      "config": {
+        "minYear": 1920,
+        "maxYear": 2010
+      }
+    },
+    {
+      "id": "province",
+      "sectionId": "basic",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.province.label",
+      "descriptionKey": "assessment.questions.province.description",
+      "required": false,
+      "order": 3,
+      "config": {
+        "options": [
+          { "id": "diy", "labelKey": "provinces.diy", "value": "DI Yogyakarta" },
+          { "id": "jakarta", "labelKey": "provinces.jakarta", "value": "DKI Jakarta" },
+          { "id": "bali", "labelKey": "provinces.bali", "value": "Bali" },
+          { "id": "jateng", "labelKey": "provinces.jateng", "value": "Jawa Tengah" },
+          { "id": "jatim", "labelKey": "provinces.jatim", "value": "Jawa Timur" },
+          { "id": "jabar", "labelKey": "provinces.jabar", "value": "Jawa Barat" },
+          { "id": "sulut", "labelKey": "provinces.sulut", "value": "Sulawesi Utara" },
+          { "id": "kaltim", "labelKey": "provinces.kaltim", "value": "Kalimantan Timur" },
+          { "id": "sumbar", "labelKey": "provinces.sumbar", "value": "Sumatera Barat" },
+          { "id": "kepri", "labelKey": "provinces.kepri", "value": "Kepulauan Riau" },
+          { "id": "aceh", "labelKey": "provinces.aceh", "value": "Aceh" },
+          { "id": "sumut", "labelKey": "provinces.sumut", "value": "Sumatera Utara" },
+          { "id": "lampung", "labelKey": "provinces.lampung", "value": "Lampung" },
+          { "id": "ntb", "labelKey": "provinces.ntb", "value": "Nusa Tenggara Barat" },
+          { "id": "ntt", "labelKey": "provinces.ntt", "value": "Nusa Tenggara Timur" },
+          { "id": "papua", "labelKey": "provinces.papua", "value": "Papua" },
+          { "id": "other", "labelKey": "provinces.other", "value": "other" }
+        ]
+      }
+    },
+    {
+      "id": "smoking",
+      "sectionId": "lifestyle",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.smoking.label",
+      "descriptionKey": "assessment.questions.smoking.description",
+      "required": true,
+      "order": 1,
+      "config": {
+        "options": [
+          { "id": "never", "labelKey": "assessment.options.smoking.never", "value": "never", "descriptionKey": "assessment.options.smoking.neverDesc" },
+          { "id": "former", "labelKey": "assessment.options.smoking.former", "value": "former", "descriptionKey": "assessment.options.smoking.formerDesc" },
+          { "id": "light", "labelKey": "assessment.options.smoking.light", "value": "light", "descriptionKey": "assessment.options.smoking.lightDesc" },
+          { "id": "heavy", "labelKey": "assessment.options.smoking.heavy", "value": "heavy", "descriptionKey": "assessment.options.smoking.heavyDesc" }
+        ]
+      }
+    },
+    {
+      "id": "cigarettes_per_day",
+      "sectionId": "lifestyle",
+      "inputType": "slider",
+      "labelKey": "assessment.questions.cigarettesPerDay.label",
+      "descriptionKey": "assessment.questions.cigarettesPerDay.description",
+      "required": true,
+      "order": 2,
+      "config": {
+        "min": 1,
+        "max": 40,
+        "step": 1,
+        "unit": "batang/hari"
+      },
+      "showIfAny": [
+        { "questionId": "smoking", "operator": "equals", "value": "light" },
+        { "questionId": "smoking", "operator": "equals", "value": "heavy" }
+      ]
+    },
+    {
+      "id": "years_smoking",
+      "sectionId": "lifestyle",
+      "inputType": "slider",
+      "labelKey": "assessment.questions.yearsSmoking.label",
+      "descriptionKey": "assessment.questions.yearsSmoking.description",
+      "required": true,
+      "order": 3,
+      "config": {
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "tahun"
+      },
+      "showIfAny": [
+        { "questionId": "smoking", "operator": "equals", "value": "former" },
+        { "questionId": "smoking", "operator": "equals", "value": "light" },
+        { "questionId": "smoking", "operator": "equals", "value": "heavy" }
+      ]
+    },
+    {
+      "id": "exercise",
+      "sectionId": "lifestyle",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.exercise.label",
+      "descriptionKey": "assessment.questions.exercise.description",
+      "required": true,
+      "order": 4,
+      "config": {
+        "options": [
+          { "id": "sedentary", "labelKey": "assessment.options.exercise.sedentary", "value": "sedentary", "descriptionKey": "assessment.options.exercise.sedentaryDesc" },
+          { "id": "light", "labelKey": "assessment.options.exercise.light", "value": "light", "descriptionKey": "assessment.options.exercise.lightDesc" },
+          { "id": "moderate", "labelKey": "assessment.options.exercise.moderate", "value": "moderate", "descriptionKey": "assessment.options.exercise.moderateDesc" },
+          { "id": "active", "labelKey": "assessment.options.exercise.active", "value": "active", "descriptionKey": "assessment.options.exercise.activeDesc" },
+          { "id": "veryActive", "labelKey": "assessment.options.exercise.veryActive", "value": "veryActive", "descriptionKey": "assessment.options.exercise.veryActiveDesc" }
+        ]
+      }
+    },
+    {
+      "id": "diet",
+      "sectionId": "lifestyle",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.diet.label",
+      "descriptionKey": "assessment.questions.diet.description",
+      "required": true,
+      "order": 5,
+      "config": {
+        "options": [
+          { "id": "poor", "labelKey": "assessment.options.diet.poor", "value": "poor", "descriptionKey": "assessment.options.diet.poorDesc" },
+          { "id": "average", "labelKey": "assessment.options.diet.average", "value": "average", "descriptionKey": "assessment.options.diet.averageDesc" },
+          { "id": "healthy", "labelKey": "assessment.options.diet.healthy", "value": "healthy", "descriptionKey": "assessment.options.diet.healthyDesc" },
+          { "id": "optimal", "labelKey": "assessment.options.diet.optimal", "value": "optimal", "descriptionKey": "assessment.options.diet.optimalDesc" }
+        ]
+      }
+    },
+    {
+      "id": "alcohol",
+      "sectionId": "lifestyle",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.alcohol.label",
+      "descriptionKey": "assessment.questions.alcohol.description",
+      "required": true,
+      "order": 6,
+      "config": {
+        "options": [
+          { "id": "never", "labelKey": "assessment.options.alcohol.never", "value": "never" },
+          { "id": "moderate", "labelKey": "assessment.options.alcohol.moderate", "value": "moderate", "descriptionKey": "assessment.options.alcohol.moderateDesc" },
+          { "id": "heavy", "labelKey": "assessment.options.alcohol.heavy", "value": "heavy", "descriptionKey": "assessment.options.alcohol.heavyDesc" }
+        ]
+      }
+    },
+    {
+      "id": "sleep",
+      "sectionId": "lifestyle",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.sleep.label",
+      "descriptionKey": "assessment.questions.sleep.description",
+      "required": true,
+      "order": 7,
+      "config": {
+        "options": [
+          { "id": "poor", "labelKey": "assessment.options.sleep.poor", "value": "poor", "descriptionKey": "assessment.options.sleep.poorDesc" },
+          { "id": "fair", "labelKey": "assessment.options.sleep.fair", "value": "fair", "descriptionKey": "assessment.options.sleep.fairDesc" },
+          { "id": "good", "labelKey": "assessment.options.sleep.good", "value": "good", "descriptionKey": "assessment.options.sleep.goodDesc" },
+          { "id": "excessive", "labelKey": "assessment.options.sleep.excessive", "value": "excessive", "descriptionKey": "assessment.options.sleep.excessiveDesc" }
+        ]
+      }
+    },
+    {
+      "id": "bmi_category",
+      "sectionId": "health",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.bmi.label",
+      "descriptionKey": "assessment.questions.bmi.description",
+      "required": true,
+      "order": 1,
+      "config": {
+        "options": [
+          { "id": "underweight", "labelKey": "assessment.options.bmi.underweight", "value": "underweight", "descriptionKey": "assessment.options.bmi.underweightDesc" },
+          { "id": "normal", "labelKey": "assessment.options.bmi.normal", "value": "normal", "descriptionKey": "assessment.options.bmi.normalDesc" },
+          { "id": "overweight", "labelKey": "assessment.options.bmi.overweight", "value": "overweight", "descriptionKey": "assessment.options.bmi.overweightDesc" },
+          { "id": "obese", "labelKey": "assessment.options.bmi.obese", "value": "obese", "descriptionKey": "assessment.options.bmi.obeseDesc" }
+        ]
+      }
+    },
+    {
+      "id": "has_chronic_condition",
+      "sectionId": "health",
+      "inputType": "boolean",
+      "labelKey": "assessment.questions.hasChronicCondition.label",
+      "descriptionKey": "assessment.questions.hasChronicCondition.description",
+      "required": true,
+      "order": 2,
+      "config": {
+        "trueLabel": "assessment.options.boolean.yes",
+        "falseLabel": "assessment.options.boolean.no"
+      }
+    },
+    {
+      "id": "chronic_conditions",
+      "sectionId": "chronic-conditions",
+      "inputType": "multi-select",
+      "labelKey": "assessment.questions.chronicConditions.label",
+      "descriptionKey": "assessment.questions.chronicConditions.description",
+      "required": true,
+      "order": 1,
+      "config": {
+        "options": [
+          { "id": "diabetes", "labelKey": "assessment.options.conditions.diabetes", "value": "diabetes" },
+          { "id": "hypertension", "labelKey": "assessment.options.conditions.hypertension", "value": "hypertension" },
+          { "id": "heart_disease", "labelKey": "assessment.options.conditions.heartDisease", "value": "heart_disease" },
+          { "id": "stroke_history", "labelKey": "assessment.options.conditions.strokeHistory", "value": "stroke_history" },
+          { "id": "cancer", "labelKey": "assessment.options.conditions.cancer", "value": "cancer" },
+          { "id": "copd", "labelKey": "assessment.options.conditions.copd", "value": "copd" },
+          { "id": "kidney_disease", "labelKey": "assessment.options.conditions.kidneyDisease", "value": "kidney_disease" }
+        ]
+      }
+    },
+    {
+      "id": "diabetes_controlled",
+      "sectionId": "chronic-conditions",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.diabetesControlled.label",
+      "descriptionKey": "assessment.questions.diabetesControlled.description",
+      "required": true,
+      "order": 2,
+      "showIf": [
+        { "questionId": "chronic_conditions", "operator": "includes", "value": "diabetes" }
+      ],
+      "config": {
+        "options": [
+          { "id": "well_controlled", "labelKey": "assessment.options.controlled.well", "value": "well_controlled", "descriptionKey": "assessment.options.controlled.wellDesc" },
+          { "id": "moderate", "labelKey": "assessment.options.controlled.moderate", "value": "moderate", "descriptionKey": "assessment.options.controlled.moderateDesc" },
+          { "id": "poorly_controlled", "labelKey": "assessment.options.controlled.poorly", "value": "poorly_controlled", "descriptionKey": "assessment.options.controlled.poorlyDesc" }
+        ]
+      }
+    },
+    {
+      "id": "hypertension_controlled",
+      "sectionId": "chronic-conditions",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.hypertensionControlled.label",
+      "descriptionKey": "assessment.questions.hypertensionControlled.description",
+      "required": true,
+      "order": 3,
+      "showIf": [
+        { "questionId": "chronic_conditions", "operator": "includes", "value": "hypertension" }
+      ],
+      "config": {
+        "options": [
+          { "id": "well_controlled", "labelKey": "assessment.options.controlled.well", "value": "well_controlled" },
+          { "id": "moderate", "labelKey": "assessment.options.controlled.moderate", "value": "moderate" },
+          { "id": "poorly_controlled", "labelKey": "assessment.options.controlled.poorly", "value": "poorly_controlled" }
+        ]
+      }
+    },
+    {
+      "id": "social_connection",
+      "sectionId": "social",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.socialConnection.label",
+      "descriptionKey": "assessment.questions.socialConnection.description",
+      "required": true,
+      "order": 1,
+      "config": {
+        "options": [
+          { "id": "isolated", "labelKey": "assessment.options.social.isolated", "value": "isolated", "descriptionKey": "assessment.options.social.isolatedDesc" },
+          { "id": "limited", "labelKey": "assessment.options.social.limited", "value": "limited", "descriptionKey": "assessment.options.social.limitedDesc" },
+          { "id": "moderate", "labelKey": "assessment.options.social.moderate", "value": "moderate", "descriptionKey": "assessment.options.social.moderateDesc" },
+          { "id": "strong", "labelKey": "assessment.options.social.strong", "value": "strong", "descriptionKey": "assessment.options.social.strongDesc" }
+        ]
+      }
+    },
+    {
+      "id": "stress",
+      "sectionId": "social",
+      "inputType": "single-select",
+      "labelKey": "assessment.questions.stress.label",
+      "descriptionKey": "assessment.questions.stress.description",
+      "required": true,
+      "order": 2,
+      "config": {
+        "options": [
+          { "id": "low", "labelKey": "assessment.options.stress.low", "value": "low", "descriptionKey": "assessment.options.stress.lowDesc" },
+          { "id": "moderate", "labelKey": "assessment.options.stress.moderate", "value": "moderate", "descriptionKey": "assessment.options.stress.moderateDesc" },
+          { "id": "high", "labelKey": "assessment.options.stress.high", "value": "high", "descriptionKey": "assessment.options.stress.highDesc" },
+          { "id": "chronic", "labelKey": "assessment.options.stress.chronic", "value": "chronic", "descriptionKey": "assessment.options.stress.chronicDesc" }
+        ]
+      }
+    },
+    {
+      "id": "family_history",
+      "sectionId": "social",
+      "inputType": "multi-select",
+      "labelKey": "assessment.questions.familyHistory.label",
+      "descriptionKey": "assessment.questions.familyHistory.description",
+      "required": false,
+      "order": 3,
+      "config": {
+        "options": [
+          { "id": "heart_disease", "labelKey": "assessment.options.familyHistory.heartDisease", "value": "heart_disease" },
+          { "id": "diabetes", "labelKey": "assessment.options.familyHistory.diabetes", "value": "diabetes" },
+          { "id": "cancer", "labelKey": "assessment.options.familyHistory.cancer", "value": "cancer" },
+          { "id": "stroke", "labelKey": "assessment.options.familyHistory.stroke", "value": "stroke" },
+          { "id": "longevity", "labelKey": "assessment.options.familyHistory.longevity", "value": "longevity" },
+          { "id": "none", "labelKey": "assessment.options.familyHistory.none", "value": "none" }
+        ]
+      }
+    }
+  ]
+}

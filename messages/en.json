@@ -30,22 +30,17 @@
     "heroQuestion2": "What will you do with your remaining time?",
     "statYearsMale": "Years (Male)",
     "statYearsFemale": "Years (Female)",
-    "statRetirementAge": "Retirement Age",
     "statAvgDays": "Average Days",
     "setupTitle": "Start Now",
-    "setupSubtitle": "No lengthy assessment needed. Enter your basic data and see your countdown immediately.",
-    "selectPlan": "Select Plan",
-    "deathPlan": "Death Plan",
-    "deathPlanDesc": "Countdown to end of life",
-    "retirementPlan": "Retirement Plan",
-    "retirementPlanDesc": "Countdown to retirement",
+    "setupSubtitle": "Enter your basic data and choose how you want to calculate your life expectancy.",
     "selectGender": "Gender",
     "birthDate": "Birth Date",
     "currentAge": "Your current age: {age} years",
     "remainingDays": "Your remaining days:",
-    "daysToRetirement": "Days to retirement:",
     "approxYears": "≈ {years} years remaining",
-    "viewDashboard": "View Dashboard",
+    "useAverage": "Use Indonesian Average",
+    "takeAssessment": "Take Health Assessment",
+    "assessmentHint": "Health assessment provides more personalized estimates based on your lifestyle",
     "enterBirthDate": "Enter Birth Date",
     "researchTitle": "Data & Research",
     "researchSubtitle": "These numbers are based on official data from the Indonesian Central Statistics Agency (BPS) and global health research.",
@@ -63,13 +58,9 @@
     "footerSource": "Data sources: Indonesian BPS 2023, WHO Global Health Observatory"
   },
   "dashboard": {
-    "deathPlan": "Death Plan",
-    "retirementPlan": "Retirement Plan",
     "remainingTime": "Your remaining time",
-    "timeToRetirement": "Time to retirement",
     "born": "Born",
     "used": "used",
-    "retirement58": "Retirement (58)",
     "yearsOld": "years",
     "currentAge": "Current Age",
     "remainingDays": "Remaining Days",
@@ -121,14 +112,17 @@
     "title": "Settings",
     "profile": "Profile",
     "currentAge": "Current Age",
+    "yearsOld": "years",
     "gender": "Gender",
     "birthDate": "Birth Date",
-    "birthDateHelp": "(for precise countdown)",
-    "planType": "Plan Type",
-    "deathPlan": "Death Plan",
-    "deathPlanDesc": "Countdown to end of life",
-    "retirementPlan": "Retirement Plan",
-    "retirementPlanDesc": "Countdown to retirement (58)",
+    "assessmentHistory": "Assessment History",
+    "lastAssessment": "Last Assessment",
+    "yearsExpected": "years expected",
+    "baseExpectancy": "Base Expectancy",
+    "adjustment": "Lifestyle Adjustment",
+    "retakeAssessment": "Retake Assessment",
+    "noAssessmentYet": "You haven't taken a health assessment yet",
+    "takeAssessmentNow": "Take Assessment Now",
     "dataManagement": "Data Management",
     "exportData": "Export Data",
     "exportDataDesc": "Download all data as JSON",
@@ -196,5 +190,282 @@
     "normalRetirement": "Normal retirement age",
     "senior": "Senior",
     "avgLifeExpectancy": "Average Indonesian life expectancy"
+  },
+  "provinces": {
+    "diy": "DI Yogyakarta",
+    "jakarta": "DKI Jakarta",
+    "bali": "Bali",
+    "jateng": "Central Java",
+    "jatim": "East Java",
+    "jabar": "West Java",
+    "sulut": "North Sulawesi",
+    "kaltim": "East Kalimantan",
+    "sumbar": "West Sumatra",
+    "kepri": "Riau Islands",
+    "aceh": "Aceh",
+    "sumut": "North Sumatra",
+    "lampung": "Lampung",
+    "ntb": "West Nusa Tenggara",
+    "ntt": "East Nusa Tenggara",
+    "papua": "Papua",
+    "other": "Other"
+  },
+  "assessment": {
+    "title": "Health Assessment",
+    "loading": "Loading assessment...",
+    "exitTitle": "Exit Assessment?",
+    "exitDescription": "Your progress will be saved. You can continue this assessment later.",
+    "continueAssessment": "Continue Assessment",
+    "exit": "Exit",
+    "section": "Section",
+    "questionsLabel": "questions",
+    "back": "Back",
+    "next": "Next",
+    "viewResults": "View Results",
+    "day": "Day",
+    "month": "Month",
+    "year": "Year",
+    "yourAge": "Your Age",
+    "years": "years",
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "sections": {
+      "basic": {
+        "title": "Basic Info",
+        "description": "Basic information about you"
+      },
+      "lifestyle": {
+        "title": "Lifestyle",
+        "description": "Your daily habits"
+      },
+      "health": {
+        "title": "Health",
+        "description": "Your health condition"
+      },
+      "chronicConditions": {
+        "title": "Chronic Conditions",
+        "description": "Details of chronic diseases you have"
+      },
+      "social": {
+        "title": "Social & Mental",
+        "description": "Social life and mental health"
+      }
+    },
+    "questions": {
+      "gender": {
+        "label": "What is your gender?",
+        "description": "Life expectancy differs between men and women"
+      },
+      "birthDate": {
+        "label": "When were you born?",
+        "description": "To calculate your age accurately"
+      },
+      "province": {
+        "label": "Where do you live?",
+        "description": "Life expectancy varies across Indonesian provinces"
+      },
+      "smoking": {
+        "label": "Do you smoke?",
+        "description": "Smoking is one of the biggest risk factors for health"
+      },
+      "cigarettesPerDay": {
+        "label": "How many cigarettes per day?",
+        "description": "Average number of cigarettes you smoke daily"
+      },
+      "yearsSmoking": {
+        "label": "How long have you been smoking?",
+        "description": "Total years of smoking (including if you've quit)"
+      },
+      "exercise": {
+        "label": "How often do you exercise?",
+        "description": "Regular physical activity greatly affects health"
+      },
+      "diet": {
+        "label": "How is your diet?",
+        "description": "Good nutrition is the foundation of long-term health"
+      },
+      "alcohol": {
+        "label": "Do you consume alcohol?",
+        "description": "Excessive alcohol consumption can affect health"
+      },
+      "sleep": {
+        "label": "How is your sleep quality?",
+        "description": "Adequate sleep is essential for health"
+      },
+      "bmi": {
+        "label": "What is your weight category?",
+        "description": "Weight affects the risk of various diseases"
+      },
+      "hasChronicCondition": {
+        "label": "Do you have any chronic diseases?",
+        "description": "Conditions requiring long-term treatment"
+      },
+      "chronicConditions": {
+        "label": "What chronic conditions do you have?",
+        "description": "Select all that apply"
+      },
+      "diabetesControlled": {
+        "label": "How well is your diabetes controlled?",
+        "description": "Blood sugar control is essential to reduce complications"
+      },
+      "hypertensionControlled": {
+        "label": "How well is your blood pressure controlled?",
+        "description": "Blood pressure control reduces risk of stroke and heart disease"
+      },
+      "socialConnection": {
+        "label": "How are your social relationships?",
+        "description": "Social connections affect mental and physical health"
+      },
+      "stress": {
+        "label": "What is your stress level?",
+        "description": "Chronic stress can affect long-term health"
+      },
+      "familyHistory": {
+        "label": "Family health history",
+        "description": "Health conditions experienced by parents or siblings"
+      }
+    },
+    "options": {
+      "boolean": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "smoking": {
+        "never": "Never smoked",
+        "neverDesc": "Never smoked at all",
+        "former": "Former smoker",
+        "formerDesc": "Used to smoke, now quit",
+        "light": "Light smoker",
+        "lightDesc": "Less than 10 cigarettes per day",
+        "heavy": "Heavy smoker",
+        "heavyDesc": "10 or more cigarettes per day"
+      },
+      "exercise": {
+        "sedentary": "Sedentary",
+        "sedentaryDesc": "Rarely or never exercise",
+        "light": "Light",
+        "lightDesc": "Exercise 1-2 times per week",
+        "moderate": "Moderate",
+        "moderateDesc": "Exercise 3-4 times per week",
+        "active": "Active",
+        "activeDesc": "Exercise 5+ times per week",
+        "veryActive": "Very active",
+        "veryActiveDesc": "Intense exercise every day"
+      },
+      "diet": {
+        "poor": "Poor",
+        "poorDesc": "Often eat fast food, rarely vegetables/fruits",
+        "average": "Average",
+        "averageDesc": "Sometimes eat healthy, sometimes not",
+        "healthy": "Healthy",
+        "healthyDesc": "Regular vegetables, fruits, balanced protein",
+        "optimal": "Optimal",
+        "optimalDesc": "Mediterranean or plant-based diet, very consistent"
+      },
+      "alcohol": {
+        "never": "Never",
+        "moderate": "Occasional/Moderate",
+        "moderateDesc": "1-2 glasses per week",
+        "heavy": "Frequent/Heavy",
+        "heavyDesc": "Daily or binge drinking"
+      },
+      "sleep": {
+        "poor": "Poor",
+        "poorDesc": "Less than 5 hours, often wake up",
+        "fair": "Fair",
+        "fairDesc": "5-6 hours, sometimes wake up",
+        "good": "Good",
+        "goodDesc": "7-8 hours, sleep soundly",
+        "excessive": "Excessive",
+        "excessiveDesc": "More than 9 hours per day"
+      },
+      "bmi": {
+        "underweight": "Underweight",
+        "underweightDesc": "BMI < 18.5",
+        "normal": "Normal",
+        "normalDesc": "BMI 18.5 - 24.9",
+        "overweight": "Overweight",
+        "overweightDesc": "BMI 25 - 29.9",
+        "obese": "Obese",
+        "obeseDesc": "BMI ≥ 30"
+      },
+      "conditions": {
+        "diabetes": "Diabetes",
+        "hypertension": "Hypertension (High Blood Pressure)",
+        "heartDisease": "Heart Disease",
+        "strokeHistory": "Stroke History",
+        "cancer": "Cancer",
+        "copd": "COPD/Lung Disease",
+        "kidneyDisease": "Kidney Disease"
+      },
+      "controlled": {
+        "well": "Well Controlled",
+        "wellDesc": "Regular medication, routine check-ups, normal lab results",
+        "moderate": "Moderately Controlled",
+        "moderateDesc": "Sometimes take medication, irregular check-ups",
+        "poorly": "Poorly Controlled",
+        "poorlyDesc": "Rarely take medication, rare check-ups, abnormal lab results"
+      },
+      "social": {
+        "isolated": "Isolated",
+        "isolatedDesc": "Rarely meet people, no support system",
+        "limited": "Limited",
+        "limitedDesc": "Have some friends, meet occasionally",
+        "moderate": "Moderate",
+        "moderateDesc": "Have friends and close family",
+        "strong": "Strong",
+        "strongDesc": "Many friends, harmonious family, active in community"
+      },
+      "stress": {
+        "low": "Low",
+        "lowDesc": "Calm life, rarely feel pressured",
+        "moderate": "Moderate",
+        "moderateDesc": "Sometimes stressed but manageable",
+        "high": "High",
+        "highDesc": "Often feel pressured and anxious",
+        "chronic": "Chronic",
+        "chronicDesc": "Constant stress, difficulty sleeping, easily irritated"
+      },
+      "familyHistory": {
+        "heartDisease": "Heart Disease",
+        "diabetes": "Diabetes",
+        "cancer": "Cancer",
+        "stroke": "Stroke",
+        "longevity": "Longevity (80+ years)",
+        "none": "None relevant"
+      }
+    },
+    "results": {
+      "estimatedLifeExpectancy": "Your Estimated Life Expectancy",
+      "yearsUnit": "years",
+      "remainingTime": "Remaining time: ~{years} years",
+      "summary": "Summary",
+      "currentAge": "Current Age",
+      "baseLifeExpectancy": "Base Life Expectancy",
+      "totalAdjustment": "Total Adjustment",
+      "finalResult": "Final Result",
+      "positiveFactors": "Positive Factors",
+      "riskFactors": "Risk Factors",
+      "confidenceLevel": "Confidence Level",
+      "confidenceHigh": "High",
+      "confidenceMedium": "Medium",
+      "confidenceLow": "Low",
+      "confidenceNote": "Based on completeness of answers and factors assessed",
+      "researchReferences": "Research References:",
+      "retake": "Retake",
+      "goToDashboard": "Go to Dashboard"
+    }
   }
 }

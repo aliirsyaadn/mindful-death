@@ -1,0 +1,501 @@
+{
+  "factors": [
+    {
+      "id": "smoking_never",
+      "questionId": "smoking",
+      "answerValue": "never",
+      "adjustment": 0,
+      "citationIds": ["gbd-2019"]
+    },
+    {
+      "id": "smoking_former",
+      "questionId": "smoking",
+      "answerValue": "former",
+      "adjustment": -3.5,
+      "citationIds": ["gbd-2019", "nejm-2013"]
+    },
+    {
+      "id": "smoking_light",
+      "questionId": "smoking",
+      "answerValue": "light",
+      "adjustment": -5,
+      "citationIds": ["gbd-2019"]
+    },
+    {
+      "id": "smoking_heavy",
+      "questionId": "smoking",
+      "answerValue": "heavy",
+      "adjustment": -10,
+      "citationIds": ["gbd-2019"],
+      "compoundWith": [
+        { "factorId": "diabetes_poorly_controlled", "multiplier": 1.5 },
+        { "factorId": "heart_disease_base", "multiplier": 1.4 }
+      ]
+    },
+    {
+      "id": "exercise_sedentary",
+      "questionId": "exercise",
+      "answerValue": "sedentary",
+      "adjustment": -3,
+      "citationIds": ["bjsm-2020"]
+    },
+    {
+      "id": "exercise_light",
+      "questionId": "exercise",
+      "answerValue": "light",
+      "adjustment": -1,
+      "citationIds": ["bjsm-2020"]
+    },
+    {
+      "id": "exercise_moderate",
+      "questionId": "exercise",
+      "answerValue": "moderate",
+      "adjustment": 0,
+      "citationIds": ["bjsm-2020"]
+    },
+    {
+      "id": "exercise_active",
+      "questionId": "exercise",
+      "answerValue": "active",
+      "adjustment": 2,
+      "citationIds": ["bjsm-2020"]
+    },
+    {
+      "id": "exercise_very_active",
+      "questionId": "exercise",
+      "answerValue": "veryActive",
+      "adjustment": 3.5,
+      "citationIds": ["bjsm-2020"]
+    },
+    {
+      "id": "diet_poor",
+      "questionId": "diet",
+      "answerValue": "poor",
+      "adjustment": -3,
+      "citationIds": ["lancet-diet-2019"]
+    },
+    {
+      "id": "diet_average",
+      "questionId": "diet",
+      "answerValue": "average",
+      "adjustment": 0,
+      "citationIds": ["lancet-diet-2019"]
+    },
+    {
+      "id": "diet_healthy",
+      "questionId": "diet",
+      "answerValue": "healthy",
+      "adjustment": 2,
+      "citationIds": ["lancet-diet-2019"]
+    },
+    {
+      "id": "diet_optimal",
+      "questionId": "diet",
+      "answerValue": "optimal",
+      "adjustment": 4,
+      "citationIds": ["lancet-diet-2019"]
+    },
+    {
+      "id": "alcohol_never",
+      "questionId": "alcohol",
+      "answerValue": "never",
+      "adjustment": 0,
+      "citationIds": ["lancet-alcohol-2018"]
+    },
+    {
+      "id": "alcohol_moderate",
+      "questionId": "alcohol",
+      "answerValue": "moderate",
+      "adjustment": 0,
+      "citationIds": ["lancet-alcohol-2018"]
+    },
+    {
+      "id": "alcohol_heavy",
+      "questionId": "alcohol",
+      "answerValue": "heavy",
+      "adjustment": -5,
+      "citationIds": ["lancet-alcohol-2018"]
+    },
+    {
+      "id": "sleep_poor",
+      "questionId": "sleep",
+      "answerValue": "poor",
+      "adjustment": -3,
+      "citationIds": ["sleep-2017"]
+    },
+    {
+      "id": "sleep_fair",
+      "questionId": "sleep",
+      "answerValue": "fair",
+      "adjustment": -1,
+      "citationIds": ["sleep-2017"]
+    },
+    {
+      "id": "sleep_good",
+      "questionId": "sleep",
+      "answerValue": "good",
+      "adjustment": 0,
+      "citationIds": ["sleep-2017"]
+    },
+    {
+      "id": "sleep_excessive",
+      "questionId": "sleep",
+      "answerValue": "excessive",
+      "adjustment": -2,
+      "citationIds": ["sleep-2017"]
+    },
+    {
+      "id": "bmi_underweight",
+      "questionId": "bmi_category",
+      "answerValue": "underweight",
+      "adjustment": -2,
+      "citationIds": ["lancet-bmi-2016"]
+    },
+    {
+      "id": "bmi_normal",
+      "questionId": "bmi_category",
+      "answerValue": "normal",
+      "adjustment": 0,
+      "citationIds": ["lancet-bmi-2016"]
+    },
+    {
+      "id": "bmi_overweight",
+      "questionId": "bmi_category",
+      "answerValue": "overweight",
+      "adjustment": -1,
+      "citationIds": ["lancet-bmi-2016"]
+    },
+    {
+      "id": "bmi_obese",
+      "questionId": "bmi_category",
+      "answerValue": "obese",
+      "adjustment": -5,
+      "citationIds": ["lancet-bmi-2016"],
+      "ageModifier": [
+        { "minAge": 18, "maxAge": 40, "multiplier": 1.3 },
+        { "minAge": 70, "maxAge": 100, "multiplier": 0.7 }
+      ]
+    },
+    {
+      "id": "diabetes_well_controlled",
+      "questionId": "diabetes_controlled",
+      "answerValue": "well_controlled",
+      "adjustment": -2,
+      "citationIds": ["diabetes-care-2020"]
+    },
+    {
+      "id": "diabetes_moderate",
+      "questionId": "diabetes_controlled",
+      "answerValue": "moderate",
+      "adjustment": -4,
+      "citationIds": ["diabetes-care-2020"]
+    },
+    {
+      "id": "diabetes_poorly_controlled",
+      "questionId": "diabetes_controlled",
+      "answerValue": "poorly_controlled",
+      "adjustment": -6,
+      "citationIds": ["diabetes-care-2020"],
+      "ageModifier": [
+        { "minAge": 30, "maxAge": 50, "multiplier": 1.2 },
+        { "minAge": 60, "maxAge": 100, "multiplier": 0.8 }
+      ]
+    },
+    {
+      "id": "hypertension_well_controlled",
+      "questionId": "hypertension_controlled",
+      "answerValue": "well_controlled",
+      "adjustment": -1,
+      "citationIds": ["jama-hypertension-2021"]
+    },
+    {
+      "id": "hypertension_moderate",
+      "questionId": "hypertension_controlled",
+      "answerValue": "moderate",
+      "adjustment": -3,
+      "citationIds": ["jama-hypertension-2021"]
+    },
+    {
+      "id": "hypertension_poorly_controlled",
+      "questionId": "hypertension_controlled",
+      "answerValue": "poorly_controlled",
+      "adjustment": -5,
+      "citationIds": ["jama-hypertension-2021"]
+    },
+    {
+      "id": "heart_disease_base",
+      "questionId": "chronic_conditions",
+      "answerValue": "heart_disease",
+      "adjustment": -5,
+      "citationIds": ["aha-2021"]
+    },
+    {
+      "id": "stroke_history_base",
+      "questionId": "chronic_conditions",
+      "answerValue": "stroke_history",
+      "adjustment": -4,
+      "citationIds": ["stroke-2019"]
+    },
+    {
+      "id": "cancer_base",
+      "questionId": "chronic_conditions",
+      "answerValue": "cancer",
+      "adjustment": -3,
+      "citationIds": ["ca-cancer-2020"]
+    },
+    {
+      "id": "copd_base",
+      "questionId": "chronic_conditions",
+      "answerValue": "copd",
+      "adjustment": -4,
+      "citationIds": ["chest-2020"]
+    },
+    {
+      "id": "kidney_disease_base",
+      "questionId": "chronic_conditions",
+      "answerValue": "kidney_disease",
+      "adjustment": -3,
+      "citationIds": ["kdigo-2021"]
+    },
+    {
+      "id": "social_isolated",
+      "questionId": "social_connection",
+      "answerValue": "isolated",
+      "adjustment": -5,
+      "citationIds": ["plos-med-2010"]
+    },
+    {
+      "id": "social_limited",
+      "questionId": "social_connection",
+      "answerValue": "limited",
+      "adjustment": -2,
+      "citationIds": ["plos-med-2010"]
+    },
+    {
+      "id": "social_moderate",
+      "questionId": "social_connection",
+      "answerValue": "moderate",
+      "adjustment": 0,
+      "citationIds": ["plos-med-2010"]
+    },
+    {
+      "id": "social_strong",
+      "questionId": "social_connection",
+      "answerValue": "strong",
+      "adjustment": 3,
+      "citationIds": ["plos-med-2010"]
+    },
+    {
+      "id": "stress_low",
+      "questionId": "stress",
+      "answerValue": "low",
+      "adjustment": 1,
+      "citationIds": ["psychosom-med-2019"]
+    },
+    {
+      "id": "stress_moderate",
+      "questionId": "stress",
+      "answerValue": "moderate",
+      "adjustment": 0,
+      "citationIds": ["psychosom-med-2019"]
+    },
+    {
+      "id": "stress_high",
+      "questionId": "stress",
+      "answerValue": "high",
+      "adjustment": -2,
+      "citationIds": ["psychosom-med-2019"]
+    },
+    {
+      "id": "stress_chronic",
+      "questionId": "stress",
+      "answerValue": "chronic",
+      "adjustment": -4,
+      "citationIds": ["psychosom-med-2019"]
+    },
+    {
+      "id": "family_longevity",
+      "questionId": "family_history",
+      "answerValue": "longevity",
+      "adjustment": 3,
+      "citationIds": ["aging-cell-2019"]
+    },
+    {
+      "id": "family_heart_disease",
+      "questionId": "family_history",
+      "answerValue": "heart_disease",
+      "adjustment": -1,
+      "citationIds": ["circ-2016"]
+    },
+    {
+      "id": "family_diabetes",
+      "questionId": "family_history",
+      "answerValue": "diabetes",
+      "adjustment": -0.5,
+      "citationIds": ["diabetes-2018"]
+    },
+    {
+      "id": "family_cancer",
+      "questionId": "family_history",
+      "answerValue": "cancer",
+      "adjustment": -0.5,
+      "citationIds": ["jco-2015"]
+    },
+    {
+      "id": "family_stroke",
+      "questionId": "family_history",
+      "answerValue": "stroke",
+      "adjustment": -1,
+      "citationIds": ["stroke-family-2017"]
+    }
+  ],
+  "citations": [
+    {
+      "id": "gbd-2019",
+      "title": "Global Burden of Disease Study 2019: Tobacco Use",
+      "journal": "The Lancet",
+      "year": 2019,
+      "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)30752-2/fulltext"
+    },
+    {
+      "id": "nejm-2013",
+      "title": "21st-Century Hazards of Smoking and Benefits of Cessation",
+      "journal": "New England Journal of Medicine",
+      "year": 2013,
+      "doi": "10.1056/NEJMsa1211128"
+    },
+    {
+      "id": "bjsm-2020",
+      "title": "Physical activity and mortality risk across the lifespan",
+      "journal": "British Journal of Sports Medicine",
+      "year": 2020,
+      "url": "https://bjsm.bmj.com/content/54/24/1499"
+    },
+    {
+      "id": "lancet-diet-2019",
+      "title": "Health effects of dietary risks in 195 countries",
+      "journal": "The Lancet",
+      "year": 2019,
+      "doi": "10.1016/S0140-6736(19)30041-8"
+    },
+    {
+      "id": "lancet-alcohol-2018",
+      "title": "Risk thresholds for alcohol consumption",
+      "journal": "The Lancet",
+      "year": 2018,
+      "doi": "10.1016/S0140-6736(18)31310-2"
+    },
+    {
+      "id": "sleep-2017",
+      "title": "Sleep duration and mortality: a systematic review and meta-analysis",
+      "journal": "Sleep",
+      "year": 2017,
+      "doi": "10.1093/sleep/zsw033"
+    },
+    {
+      "id": "lancet-bmi-2016",
+      "title": "Body-mass index and all-cause mortality",
+      "journal": "The Lancet",
+      "year": 2016,
+      "doi": "10.1016/S0140-6736(16)30175-1"
+    },
+    {
+      "id": "diabetes-care-2020",
+      "title": "Glycemic Control and Life Expectancy in Type 2 Diabetes",
+      "journal": "Diabetes Care",
+      "year": 2020,
+      "doi": "10.2337/dc19-0419"
+    },
+    {
+      "id": "jama-hypertension-2021",
+      "title": "Blood Pressure Control and Cardiovascular Outcomes",
+      "journal": "JAMA",
+      "year": 2021,
+      "doi": "10.1001/jama.2021.9606"
+    },
+    {
+      "id": "aha-2021",
+      "title": "Heart Disease and Stroke Statistics 2021",
+      "journal": "Circulation",
+      "year": 2021,
+      "doi": "10.1161/CIR.0000000000000950"
+    },
+    {
+      "id": "stroke-2019",
+      "title": "Long-term Survival After Stroke",
+      "journal": "Stroke",
+      "year": 2019,
+      "doi": "10.1161/STROKEAHA.118.023778"
+    },
+    {
+      "id": "ca-cancer-2020",
+      "title": "Cancer Statistics 2020",
+      "journal": "CA: A Cancer Journal for Clinicians",
+      "year": 2020,
+      "doi": "10.3322/caac.21590"
+    },
+    {
+      "id": "chest-2020",
+      "title": "COPD and Life Expectancy",
+      "journal": "CHEST",
+      "year": 2020,
+      "doi": "10.1016/j.chest.2020.01.023"
+    },
+    {
+      "id": "kdigo-2021",
+      "title": "Chronic Kidney Disease Prognosis",
+      "journal": "Kidney International",
+      "year": 2021,
+      "doi": "10.1016/j.kint.2020.11.004"
+    },
+    {
+      "id": "plos-med-2010",
+      "title": "Social Relationships and Mortality Risk",
+      "journal": "PLOS Medicine",
+      "year": 2010,
+      "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1000316"
+    },
+    {
+      "id": "psychosom-med-2019",
+      "title": "Chronic Stress and Mortality Risk",
+      "journal": "Psychosomatic Medicine",
+      "year": 2019,
+      "doi": "10.1097/PSY.0000000000000689"
+    },
+    {
+      "id": "aging-cell-2019",
+      "title": "Genetics of Human Longevity",
+      "journal": "Aging Cell",
+      "year": 2019,
+      "doi": "10.1111/acel.12968"
+    },
+    {
+      "id": "circ-2016",
+      "title": "Family History of Cardiovascular Disease",
+      "journal": "Circulation",
+      "year": 2016,
+      "doi": "10.1161/CIRCULATIONAHA.116.024442"
+    },
+    {
+      "id": "diabetes-2018",
+      "title": "Family History of Diabetes and Risk",
+      "journal": "Diabetes",
+      "year": 2018,
+      "doi": "10.2337/db18-0170"
+    },
+    {
+      "id": "jco-2015",
+      "title": "Family History and Cancer Risk",
+      "journal": "Journal of Clinical Oncology",
+      "year": 2015,
+      "doi": "10.1200/JCO.2015.61.5153"
+    },
+    {
+      "id": "stroke-family-2017",
+      "title": "Family History of Stroke and Risk",
+      "journal": "Stroke",
+      "year": 2017,
+      "doi": "10.1161/STROKEAHA.117.017290"
+    }
+  ]
+}

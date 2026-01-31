@@ -1,8 +1,7 @@
-import type { AssessmentData, LifeEstimate, PlanType } from "@/types";
+import type { AssessmentData, LifeEstimate } from "@/types";
 import {
   INDONESIA_LIFE_EXPECTANCY,
   LIFESTYLE_FACTORS,
-  RETIREMENT_AGE,
   LIFE_EXPECTANCY_BY_PROVINCE,
 } from "./research-data";
 
@@ -58,18 +57,12 @@ export function calculateLifeExpectancy(data: AssessmentData): LifeEstimate {
   const daysLived = Math.round(data.age * DAYS_PER_YEAR);
   const totalDays = Math.round(adjustedLE * DAYS_PER_YEAR);
 
-  // Hitung sampai pensiun
-  const yearsToRetirement = Math.max(0, RETIREMENT_AGE.normal - data.age);
-  const daysToRetirement = Math.round(yearsToRetirement * DAYS_PER_YEAR);
-
   return {
     lifeExpectancy: adjustedLE,
     yearsRemaining,
     daysRemaining,
     daysLived,
     totalDays,
-    yearsToRetirement,
-    daysToRetirement,
     adjustmentApplied: adjustment,
   };
 }
@@ -77,30 +70,23 @@ export function calculateLifeExpectancy(data: AssessmentData): LifeEstimate {
 // Hitung untuk mode tanpa assessment (rata-rata Indonesia)
 export function calculateAverageLifeExpectancy(
   age: number,
-  gender: "male" | "female" = "male",
-  planType: PlanType = "death"
+  gender: "male" | "female" = "male"
 ): LifeEstimate {
   const baseLE = gender === "female"
     ? INDONESIA_LIFE_EXPECTANCY.female
     : INDONESIA_LIFE_EXPECTANCY.male;
 
-  const targetAge = planType === "retirement" ? RETIREMENT_AGE.normal : baseLE;
-  const yearsRemaining = Math.max(0, targetAge - age);
+  const yearsRemaining = Math.max(0, baseLE - age);
   const daysRemaining = Math.round(yearsRemaining * DAYS_PER_YEAR);
   const daysLived = Math.round(age * DAYS_PER_YEAR);
-  const totalDays = Math.round(targetAge * DAYS_PER_YEAR);
-
-  const yearsToRetirement = Math.max(0, RETIREMENT_AGE.normal - age);
-  const daysToRetirement = Math.round(yearsToRetirement * DAYS_PER_YEAR);
+  const totalDays = Math.round(baseLE * DAYS_PER_YEAR);
 
   return {
-    lifeExpectancy: Math.round(targetAge),
+    lifeExpectancy: Math.round(baseLE),
     yearsRemaining,
     daysRemaining,
     daysLived,
     totalDays,
-    yearsToRetirement,
-    daysToRetirement,
     adjustmentApplied: 0,
   };
 }

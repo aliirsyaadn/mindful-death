@@ -8,15 +8,15 @@ import {
   ArrowLeft,
   User,
   Calendar,
-  Target,
   Trash2,
   Download,
   Upload,
   AlertTriangle,
+  ClipboardList,
+  ChevronRight,
 } from "lucide-react";
 import { getUserData, hasSetup, updateUserData, clearAllData } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -30,7 +30,19 @@ import {
 } from "@/components/ui/alert-dialog";
 import { MotionFadeUp } from "@/components/motion";
 import { LanguageSwitcher } from "@/components/navigation";
-import type { UserData, PlanType } from "@/types";
+import type { UserData } from "@/types";
+
+// Calculate age from birth date
+function calculateAge(birthDate: string): number {
+  const today = new Date();
+  const birth = new Date(birthDate);
+  let age = today.getFullYear() - birth.getFullYear();
+  const monthDiff = today.getMonth() - birth.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
+  return Math.max(0, age);
+}
 
 export default function SettingsPage() {
   const router = useRouter();
@@ -43,10 +55,11 @@ export default function SettingsPage() {
   const [isSaving, setIsSaving] = useState(false);
 
   // Editable fields
-  const [age, setAge] = useState(30);
   const [gender, setGender] = useState<"male" | "female">("male");
-  const [planType, setPlanType] = useState<PlanType>("death");
   const [birthDate, setBirthDate] = useState("");
+
+  // Calculate age from birthDate
+  const age = birthDate ? calculateAge(birthDate) : 0;
 
   useEffect(() => {
     setMounted(true);
@@ -58,10 +71,8 @@ export default function SettingsPage() {
     if (data) {
       setUserData(data);
       if (data.assessment) {
-        setAge(data.assessment.age);
         setGender(data.assessment.gender);
       }
-      setPlanType(data.planType);
       setBirthDate(data.birthDate || "");
     }
   }, [router]);
@@ -78,7 +89,6 @@ export default function SettingsPage() {
         age,
         gender,
       },
-      planType,
       birthDate: birthDate || undefined,
     };
 
@@ -114,9 +124,7 @@ export default function SettingsPage() {
         if (imported.assessment && imported.goals) {
           updateUserData(imported);
           setUserData(imported);
-          setAge(imported.assessment.age);
           setGender(imported.assessment.gender);
-          setPlanType(imported.planType);
           setBirthDate(imported.birthDate || "");
           alert(t("importSuccess"));
         } else {
@@ -171,29 +179,23 @@ export default function SettingsPage() {
               {t("profile")}
             </h2>
             <div className="glass-card rounded-2xl p-6 bg-white border border-zinc-200 space-y-6">
-              {/* Age with Slider */}
+              {/* Birth Date */}
               <div>
-                <label className="block text-sm font-medium text-zinc-700 mb-4">
-                  {t("currentAge")}
+                <label className="block text-sm font-medium text-zinc-700 mb-2">
+                  {t("birthDate")}
                 </label>
-                <div className="flex items-center gap-4">
-                  <Slider
-                    value={[age]}
-                    onValueChange={(value) => setAge(value[0])}
-                    min={18}
-                    max={80}
-                    step={1}
-                    className="flex-1"
-                  />
-                  <motion.span
-                    key={age}
-                    initial={{ scale: 1.2, color: "#18181b" }}
-                    animate={{ scale: 1, color: "#18181b" }}
-                    className="text-2xl font-bold text-zinc-900 w-12 text-center"
-                  >
-                    {age}
-                  </motion.span>
-                </div>
+                <input
+                  type="date"
+                  value={birthDate}
+                  onChange={(e) => setBirthDate(e.target.value)}
+                  max={new Date().toISOString().split("T")[0]}
+                  className="w-full p-3 rounded-xl border-2 border-zinc-200 focus:border-zinc-900 focus:outline-none transition-colors"
+                />
+                {birthDate && (
+                  <p className="text-sm text-zinc-500 mt-2">
+                    {t("currentAge")}: <span className="font-semibold text-zinc-900">{age} {t("yearsOld")}</span>
+                  </p>
+                )}
               </div>
 
               {/* Gender */}
@@ -220,54 +222,75 @@ export default function SettingsPage() {
                   ))}
                 </div>
               </div>
-
-              {/* Birth Date */}
-              <div>
-                <label className="block text-sm font-medium text-zinc-700 mb-2">
-                  {t("birthDate")}{" "}
-                  <span className="text-zinc-400 font-normal">{t("birthDateHelp")}</span>
-                </label>
-                <input
-                  type="date"
-                  value={birthDate}
-                  onChange={(e) => setBirthDate(e.target.value)}
-                  className="w-full p-3 rounded-xl border-2 border-zinc-200 focus:border-zinc-900 focus:outline-none transition-colors"
-                />
-              </div>
             </div>
           </section>
         </MotionFadeUp>
 
-        {/* Plan Type Section */}
+        {/* Assessment History Section */}
         <MotionFadeUp delay={0.1}>
           <section className="mb-8">
             <h2 className="text-lg font-semibold text-zinc-900 mb-4 flex items-center gap-2">
-              <Target className="w-5 h-5" />
-              {t("planType")}
+              <ClipboardList className="w-5 h-5" />
+              {t("assessmentHistory")}
             </h2>
             <div className="glass-card rounded-2xl p-6 bg-white border border-zinc-200">
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { value: "death", label: t("deathPlan"), desc: t("deathPlanDesc") },
-                  { value: "retirement", label: t("retirementPlan"), desc: t("retirementPlanDesc") },
-                ].map((plan) => (
-                  <motion.button
-                    key={plan.value}
-                    type="button"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setPlanType(plan.value as PlanType)}
-                    className={`p-4 rounded-xl border-2 transition-all text-left ${
-                      planType === plan.value
-                        ? "border-zinc-900 bg-zinc-900 text-white"
-                        : "border-zinc-200 hover:border-zinc-300"
-                    }`}
+              {userData.extendedAssessment ? (
+                <div className="space-y-4">
+                  {/* Last Assessment Info */}
+                  <div className="flex items-center justify-between p-3 bg-green-50 rounded-xl border border-green-200">
+                    <div>
+                      <p className="font-medium text-green-800">{t("lastAssessment")}</p>
+                      <p className="text-sm text-green-600">
+                        {new Date(userData.extendedAssessment.completedAt).toLocaleDateString(
+                          locale === "id" ? "id-ID" : "en-US",
+                          { dateStyle: "long" }
+                        )}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-2xl font-bold text-green-700">
+                        {userData.extendedAssessment.result.adjustedLifeExpectancy}
+                      </p>
+                      <p className="text-xs text-green-600">{t("yearsExpected")}</p>
+                    </div>
+                  </div>
+
+                  {/* Assessment Result Summary */}
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div className="p-3 bg-zinc-50 rounded-lg">
+                      <p className="text-zinc-500">{t("baseExpectancy")}</p>
+                      <p className="font-semibold text-zinc-900">
+                        {userData.extendedAssessment.result.baseLifeExpectancy} {t("yearsOld")}
+                      </p>
+                    </div>
+                    <div className="p-3 bg-zinc-50 rounded-lg">
+                      <p className="text-zinc-500">{t("adjustment")}</p>
+                      <p className={`font-semibold ${userData.extendedAssessment.result.totalAdjustment >= 0 ? "text-green-600" : "text-red-600"}`}>
+                        {userData.extendedAssessment.result.totalAdjustment >= 0 ? "+" : ""}
+                        {userData.extendedAssessment.result.totalAdjustment} {t("yearsOld")}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Retake Assessment Link */}
+                  <Link
+                    href="/assessment"
+                    className="flex items-center justify-between p-3 rounded-xl hover:bg-zinc-50 transition-colors"
                   >
-                    <p className="font-semibold">{plan.label}</p>
-                    <p className="text-xs opacity-70 mt-1">{plan.desc}</p>
-                  </motion.button>
-                ))}
-              </div>
+                    <span className="text-zinc-700">{t("retakeAssessment")}</span>
+                    <ChevronRight className="w-5 h-5 text-zinc-400" />
+                  </Link>
+                </div>
+              ) : (
+                <div className="text-center py-4">
+                  <p className="text-zinc-500 mb-4">{t("noAssessmentYet")}</p>
+                  <Link href="/assessment">
+                    <Button size="sm">
+                      {t("takeAssessmentNow")}
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </div>
           </section>
         </MotionFadeUp>

@@ -30,22 +30,17 @@
     "heroQuestion2": "Apa yang akan kamu lakukan dengan sisa waktumu?",
     "statYearsMale": "Tahun (Pria)",
     "statYearsFemale": "Tahun (Wanita)",
-    "statRetirementAge": "Usia Pensiun",
     "statAvgDays": "Hari Rata-rata",
     "setupTitle": "Mulai Sekarang",
-    "setupSubtitle": "Tidak perlu assessment panjang. Masukkan data dasar dan langsung lihat countdown-mu.",
-    "selectPlan": "Pilih Rencana",
-    "deathPlan": "Death Plan",
-    "deathPlanDesc": "Hitung mundur ke akhir hayat",
-    "retirementPlan": "Retirement Plan",
-    "retirementPlanDesc": "Hitung mundur ke pensiun",
+    "setupSubtitle": "Masukkan data dasar dan pilih cara menghitung harapan hidupmu.",
     "selectGender": "Jenis Kelamin",
     "birthDate": "Tanggal Lahir",
     "currentAge": "Usia kamu saat ini: {age} tahun",
     "remainingDays": "Sisa hari hidupmu:",
-    "daysToRetirement": "Hari menuju pensiun:",
     "approxYears": "≈ {years} tahun lagi",
-    "viewDashboard": "Lihat Dashboard",
+    "useAverage": "Gunakan Rata-rata Indonesia",
+    "takeAssessment": "Ikuti Health Assessment",
+    "assessmentHint": "Health assessment memberikan estimasi lebih personal berdasarkan gaya hidupmu",
     "enterBirthDate": "Masukkan Tanggal Lahir",
     "researchTitle": "Data & Riset",
     "researchSubtitle": "Angka-angka ini berdasarkan data resmi dari Badan Pusat Statistik (BPS) dan penelitian kesehatan global.",
@@ -63,13 +58,9 @@
     "footerSource": "Sumber data: BPS Indonesia 2023, WHO Global Health Observatory"
   },
   "dashboard": {
-    "deathPlan": "Death Plan",
-    "retirementPlan": "Retirement Plan",
     "remainingTime": "Sisa waktu hidupmu",
-    "timeToRetirement": "Waktu menuju pensiun",
     "born": "Lahir",
     "used": "terpakai",
-    "retirement58": "Pensiun (58)",
     "yearsOld": "tahun",
     "currentAge": "Usia Sekarang",
     "remainingDays": "Sisa Hari",
@@ -121,14 +112,17 @@
     "title": "Pengaturan",
     "profile": "Profil",
     "currentAge": "Usia Saat Ini",
+    "yearsOld": "tahun",
     "gender": "Jenis Kelamin",
     "birthDate": "Tanggal Lahir",
-    "birthDateHelp": "(untuk countdown presisi)",
-    "planType": "Jenis Rencana",
-    "deathPlan": "Death Plan",
-    "deathPlanDesc": "Hitung mundur ke akhir hayat",
-    "retirementPlan": "Retirement Plan",
-    "retirementPlanDesc": "Hitung mundur ke pensiun (58)",
+    "assessmentHistory": "Riwayat Assessment",
+    "lastAssessment": "Assessment Terakhir",
+    "yearsExpected": "tahun perkiraan",
+    "baseExpectancy": "Harapan Hidup Dasar",
+    "adjustment": "Penyesuaian Gaya Hidup",
+    "retakeAssessment": "Ikuti Assessment Ulang",
+    "noAssessmentYet": "Kamu belum mengikuti health assessment",
+    "takeAssessmentNow": "Ikuti Assessment Sekarang",
     "dataManagement": "Manajemen Data",
     "exportData": "Export Data",
     "exportDataDesc": "Download semua data sebagai JSON",
@@ -196,5 +190,282 @@
     "normalRetirement": "Usia pensiun normal",
     "senior": "Lansia",
     "avgLifeExpectancy": "Harapan hidup rata-rata Indonesia"
+  },
+  "provinces": {
+    "diy": "DI Yogyakarta",
+    "jakarta": "DKI Jakarta",
+    "bali": "Bali",
+    "jateng": "Jawa Tengah",
+    "jatim": "Jawa Timur",
+    "jabar": "Jawa Barat",
+    "sulut": "Sulawesi Utara",
+    "kaltim": "Kalimantan Timur",
+    "sumbar": "Sumatera Barat",
+    "kepri": "Kepulauan Riau",
+    "aceh": "Aceh",
+    "sumut": "Sumatera Utara",
+    "lampung": "Lampung",
+    "ntb": "Nusa Tenggara Barat",
+    "ntt": "Nusa Tenggara Timur",
+    "papua": "Papua",
+    "other": "Lainnya"
+  },
+  "assessment": {
+    "title": "Penilaian Kesehatan",
+    "loading": "Memuat assessment...",
+    "exitTitle": "Keluar dari Assessment?",
+    "exitDescription": "Progress Anda akan disimpan. Anda dapat melanjutkan assessment ini nanti.",
+    "continueAssessment": "Lanjutkan Assessment",
+    "exit": "Keluar",
+    "section": "Bagian",
+    "questionsLabel": "pertanyaan",
+    "back": "Kembali",
+    "next": "Lanjut",
+    "viewResults": "Lihat Hasil",
+    "day": "Tanggal",
+    "month": "Bulan",
+    "year": "Tahun",
+    "yourAge": "Usia Anda",
+    "years": "tahun",
+    "months": {
+      "january": "Januari",
+      "february": "Februari",
+      "march": "Maret",
+      "april": "April",
+      "may": "Mei",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "Agustus",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "Desember"
+    },
+    "sections": {
+      "basic": {
+        "title": "Data Dasar",
+        "description": "Informasi dasar tentang Anda"
+      },
+      "lifestyle": {
+        "title": "Gaya Hidup",
+        "description": "Kebiasaan sehari-hari Anda"
+      },
+      "health": {
+        "title": "Kesehatan",
+        "description": "Kondisi kesehatan Anda"
+      },
+      "chronicConditions": {
+        "title": "Kondisi Kronis",
+        "description": "Detail penyakit kronis yang Anda miliki"
+      },
+      "social": {
+        "title": "Sosial & Mental",
+        "description": "Kehidupan sosial dan kesehatan mental"
+      }
+    },
+    "questions": {
+      "gender": {
+        "label": "Apa jenis kelamin Anda?",
+        "description": "Harapan hidup berbeda antara pria dan wanita"
+      },
+      "birthDate": {
+        "label": "Kapan Anda lahir?",
+        "description": "Untuk menghitung usia Anda secara akurat"
+      },
+      "province": {
+        "label": "Di mana Anda tinggal?",
+        "description": "Harapan hidup berbeda di setiap provinsi Indonesia"
+      },
+      "smoking": {
+        "label": "Apakah Anda merokok?",
+        "description": "Merokok adalah salah satu faktor risiko terbesar untuk kesehatan"
+      },
+      "cigarettesPerDay": {
+        "label": "Berapa batang rokok per hari?",
+        "description": "Rata-rata jumlah rokok yang Anda hisap setiap hari"
+      },
+      "yearsSmoking": {
+        "label": "Berapa lama Anda merokok?",
+        "description": "Total tahun Anda merokok (termasuk jika sudah berhenti)"
+      },
+      "exercise": {
+        "label": "Seberapa sering Anda berolahraga?",
+        "description": "Aktivitas fisik secara teratur sangat mempengaruhi kesehatan"
+      },
+      "diet": {
+        "label": "Bagaimana pola makan Anda?",
+        "description": "Nutrisi yang baik adalah fondasi kesehatan jangka panjang"
+      },
+      "alcohol": {
+        "label": "Apakah Anda mengonsumsi alkohol?",
+        "description": "Konsumsi alkohol berlebihan dapat mempengaruhi kesehatan"
+      },
+      "sleep": {
+        "label": "Bagaimana kualitas tidur Anda?",
+        "description": "Tidur yang cukup sangat penting untuk kesehatan"
+      },
+      "bmi": {
+        "label": "Bagaimana kategori berat badan Anda?",
+        "description": "Berat badan mempengaruhi risiko berbagai penyakit"
+      },
+      "hasChronicCondition": {
+        "label": "Apakah Anda memiliki penyakit kronis?",
+        "description": "Penyakit yang memerlukan penanganan jangka panjang"
+      },
+      "chronicConditions": {
+        "label": "Penyakit kronis apa yang Anda miliki?",
+        "description": "Pilih semua yang berlaku"
+      },
+      "diabetesControlled": {
+        "label": "Seberapa terkontrol diabetes Anda?",
+        "description": "Kontrol gula darah sangat penting untuk mengurangi komplikasi"
+      },
+      "hypertensionControlled": {
+        "label": "Seberapa terkontrol tekanan darah Anda?",
+        "description": "Kontrol tekanan darah mengurangi risiko stroke dan jantung"
+      },
+      "socialConnection": {
+        "label": "Bagaimana hubungan sosial Anda?",
+        "description": "Koneksi sosial mempengaruhi kesehatan mental dan fisik"
+      },
+      "stress": {
+        "label": "Bagaimana tingkat stres Anda?",
+        "description": "Stres kronis dapat mempengaruhi kesehatan jangka panjang"
+      },
+      "familyHistory": {
+        "label": "Riwayat kesehatan keluarga",
+        "description": "Kondisi kesehatan yang dialami orang tua atau saudara kandung"
+      }
+    },
+    "options": {
+      "boolean": {
+        "yes": "Ya",
+        "no": "Tidak"
+      },
+      "smoking": {
+        "never": "Tidak pernah merokok",
+        "neverDesc": "Tidak pernah merokok sama sekali",
+        "former": "Mantan perokok",
+        "formerDesc": "Dulu merokok, sekarang sudah berhenti",
+        "light": "Perokok ringan",
+        "lightDesc": "Kurang dari 10 batang per hari",
+        "heavy": "Perokok berat",
+        "heavyDesc": "10 batang atau lebih per hari"
+      },
+      "exercise": {
+        "sedentary": "Tidak aktif",
+        "sedentaryDesc": "Jarang atau tidak pernah olahraga",
+        "light": "Ringan",
+        "lightDesc": "Olahraga 1-2 kali per minggu",
+        "moderate": "Sedang",
+        "moderateDesc": "Olahraga 3-4 kali per minggu",
+        "active": "Aktif",
+        "activeDesc": "Olahraga 5+ kali per minggu",
+        "veryActive": "Sangat aktif",
+        "veryActiveDesc": "Olahraga intensif setiap hari"
+      },
+      "diet": {
+        "poor": "Buruk",
+        "poorDesc": "Sering makan makanan cepat saji, jarang sayur/buah",
+        "average": "Rata-rata",
+        "averageDesc": "Kadang makan sehat, kadang tidak",
+        "healthy": "Sehat",
+        "healthyDesc": "Rutin makan sayur, buah, protein seimbang",
+        "optimal": "Optimal",
+        "optimalDesc": "Diet mediterania atau plant-based, sangat teratur"
+      },
+      "alcohol": {
+        "never": "Tidak pernah",
+        "moderate": "Sesekali/Moderat",
+        "moderateDesc": "1-2 gelas per minggu",
+        "heavy": "Sering/Berat",
+        "heavyDesc": "Setiap hari atau pesta minuman"
+      },
+      "sleep": {
+        "poor": "Buruk",
+        "poorDesc": "Kurang dari 5 jam, sering terbangun",
+        "fair": "Cukup",
+        "fairDesc": "5-6 jam, kadang terbangun",
+        "good": "Baik",
+        "goodDesc": "7-8 jam, tidur nyenyak",
+        "excessive": "Berlebihan",
+        "excessiveDesc": "Lebih dari 9 jam per hari"
+      },
+      "bmi": {
+        "underweight": "Kurus",
+        "underweightDesc": "BMI < 18.5",
+        "normal": "Normal",
+        "normalDesc": "BMI 18.5 - 24.9",
+        "overweight": "Kegemukan",
+        "overweightDesc": "BMI 25 - 29.9",
+        "obese": "Obesitas",
+        "obeseDesc": "BMI ≥ 30"
+      },
+      "conditions": {
+        "diabetes": "Diabetes",
+        "hypertension": "Hipertensi (Darah Tinggi)",
+        "heartDisease": "Penyakit Jantung",
+        "strokeHistory": "Riwayat Stroke",
+        "cancer": "Kanker",
+        "copd": "COPD/Penyakit Paru",
+        "kidneyDisease": "Penyakit Ginjal"
+      },
+      "controlled": {
+        "well": "Terkontrol Baik",
+        "wellDesc": "Rutin obat, kontrol teratur, hasil lab normal",
+        "moderate": "Cukup Terkontrol",
+        "moderateDesc": "Kadang minum obat, kontrol tidak teratur",
+        "poorly": "Tidak Terkontrol",
+        "poorlyDesc": "Jarang obat, jarang kontrol, hasil lab tidak normal"
+      },
+      "social": {
+        "isolated": "Terisolasi",
+        "isolatedDesc": "Jarang bertemu orang, tidak ada support system",
+        "limited": "Terbatas",
+        "limitedDesc": "Punya beberapa teman, kadang bertemu",
+        "moderate": "Cukup",
+        "moderateDesc": "Punya teman dan keluarga dekat",
+        "strong": "Kuat",
+        "strongDesc": "Banyak teman, keluarga harmonis, aktif di komunitas"
+      },
+      "stress": {
+        "low": "Rendah",
+        "lowDesc": "Hidup tenang, jarang merasa tertekan",
+        "moderate": "Sedang",
+        "moderateDesc": "Kadang stres tapi bisa dikelola",
+        "high": "Tinggi",
+        "highDesc": "Sering merasa tertekan dan cemas",
+        "chronic": "Kronis",
+        "chronicDesc": "Stres terus-menerus, sulit tidur, mudah marah"
+      },
+      "familyHistory": {
+        "heartDisease": "Penyakit Jantung",
+        "diabetes": "Diabetes",
+        "cancer": "Kanker",
+        "stroke": "Stroke",
+        "longevity": "Umur Panjang (80+ tahun)",
+        "none": "Tidak ada yang relevan"
+      }
+    },
+    "results": {
+      "estimatedLifeExpectancy": "Estimasi Harapan Hidup Anda",
+      "yearsUnit": "tahun",
+      "remainingTime": "Sisa waktu: ~{years} tahun",
+      "summary": "Ringkasan",
+      "currentAge": "Usia Saat Ini",
+      "baseLifeExpectancy": "Base Life Expectancy",
+      "totalAdjustment": "Total Penyesuaian",
+      "finalResult": "Hasil Akhir",
+      "positiveFactors": "Faktor Positif",
+      "riskFactors": "Faktor Risiko",
+      "confidenceLevel": "Tingkat Kepercayaan",
+      "confidenceHigh": "Tinggi",
+      "confidenceMedium": "Sedang",
+      "confidenceLow": "Rendah",
+      "confidenceNote": "Berdasarkan kelengkapan jawaban dan faktor yang dinilai",
+      "researchReferences": "Referensi Penelitian:",
+      "retake": "Ulang",
+      "goToDashboard": "Ke Dashboard"
+    }
   }
 }

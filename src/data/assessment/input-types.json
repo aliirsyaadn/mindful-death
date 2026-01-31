@@ -1,0 +1,83 @@
+{
+  "inputTypes": [
+    {
+      "type": "single-select",
+      "component": "SingleSelect",
+      "defaultConfig": {
+        "layout": "vertical",
+        "showDescription": true
+      },
+      "validation": {
+        "valueType": "string"
+      }
+    },
+    {
+      "type": "multi-select",
+      "component": "MultiSelect",
+      "defaultConfig": {
+        "layout": "vertical",
+        "minSelections": 0,
+        "maxSelections": null,
+        "showDescription": true
+      },
+      "validation": {
+        "valueType": "array"
+      }
+    },
+    {
+      "type": "slider",
+      "component": "SliderInput",
+      "defaultConfig": {
+        "showValue": true,
+        "showMinMax": true,
+        "showUnit": true
+      },
+      "validation": {
+        "valueType": "number"
+      }
+    },
+    {
+      "type": "number",
+      "component": "NumberInput",
+      "defaultConfig": {
+        "allowDecimal": false,
+        "showUnit": true
+      },
+      "validation": {
+        "valueType": "number"
+      }
+    },
+    {
+      "type": "date",
+      "component": "DateInput",
+      "defaultConfig": {
+        "format": "YYYY-MM-DD",
+        "showAge": true
+      },
+      "validation": {
+        "valueType": "string"
+      }
+    },
+    {
+      "type": "boolean",
+      "component": "BooleanToggle",
+      "defaultConfig": {
+        "style": "buttons"
+      },
+      "validation": {
+        "valueType": "boolean"
+      }
+    },
+    {
+      "type": "text",
+      "component": "TextInput",
+      "defaultConfig": {
+        "multiline": false,
+        "maxLength": 200
+      },
+      "validation": {
+        "valueType": "string"
+      }
+    }
+  ]
+}
