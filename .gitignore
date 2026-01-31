@@ -35,5 +35,6 @@ next-env.d.ts
 
 # claude code ignore
 logs
+.claude/data/sessions
 
 .env

@@ -107,22 +107,7 @@ def get_llm_completion_message():
                     return result.stdout.strip()
             except (subprocess.TimeoutExpired, subprocess.SubprocessError):
                 pass
-    
-    # Try Ollama third (local LLM)
-    ollama_script = llm_dir / "ollama.py"
-    if ollama_script.exists():
-        try:
-            result = subprocess.run([
-                "uv", "run", str(ollama_script), "--completion"
-            ], 
-            capture_output=True,
-            text=True,
-            timeout=10
-            )
-            if result.returncode == 0 and result.stdout.strip():
-                return result.stdout.strip()
-        except (subprocess.TimeoutExpired, subprocess.SubprocessError):
-            pass
+
     
     # Fallback to random predefined message
     messages = get_completion_messages()
